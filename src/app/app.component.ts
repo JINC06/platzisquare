@@ -6,5 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'PlatziSquare';
+  a = 3;
+  b = 5;
+  listo = false;
+  nombre = '';
+
+  constructor() {
+    setTimeout(() => { this.listo = true; }, 3000);
+  }
+
+  hacerAlgo() {
+    alert('Haciendo algo');
+  }
 }
