@@ -1,0 +1,36 @@
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="6" >
+  <agm-marker *ngFor="let lugar of lugares" [latitude]="lugar.lat" [longitude]="lugar.lng"></agm-marker>
+</agm-map>
+<hr/>
+<div class="container" >
+  <div class="row">
+    <div class="col-md-8" >
+      <h2>Lugares cercanos</h2>
+      <a class="btn btn-primary" routerLink="/crear/new" >Crear nuevo negocio</a>
+      <ul class="list-group" >
+        <ng-container *ngFor="let lugar of lugares" >
+          <!--a routerLink="/detalle/{{lugar.id}}" [queryParams]="{action: 'view', referer: 'google'}" ><li class="list-group-item" *ngIf="lugar.activo"   >{{lugar.nombre}}</li></a-->
+          <a routerLink="/crear/{{lugar.id}}" >
+            <li class="list-group-item" *ngIf="lugar.activo" >
+              {{lugar.nombre | uppercase}}
+              <br/>
+              <small>Creado: {{lugar.id | date:'medium' | uppercase}}</small>
+              <br/>
+              {{'123123.12123' | number:'1.2-2' }}
+            </li>
+          </a>
+        </ng-container>
+      </ul>
+      <div *ngIf="showMessageError" class="alert alert-warning alert-dismissable" role="alert" >
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="closeErrorMessage()" >
+          <span aria-hidden="true" >&times;</span>
+        </button>
+        <strong>Ocurrió un problema</strong>
+        <br/> {{messageError}}
+      </div>
+    </div>
+    <div class="col-md-4" >
+      <h2>Destacados</h2>
+    </div>
+  </div>
+</div>

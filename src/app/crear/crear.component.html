@@ -1,0 +1,30 @@
+<div class="well" >
+  <a routerLink="/lugares" >Lugares</a> / {{action}} lugar
+</div>
+<div class="container" >
+  <label>Nombre</label>
+  <input type="text" class="form-control" [(ngModel)]="lugar.nombre" />
+  <br />
+  <label>Distancia</label>
+  <input type="number" class="form-control" [(ngModel)]="lugar.distancia" />
+  <br />
+  <label>Cercanía</label>
+  <input type="number" class="form-control" [(ngModel)]="lugar.cercania" />
+  <br />
+  <label>Descripción</label>
+  <textarea class="form-control" [(ngModel)]="lugar.descripcion" ></textarea>
+  <br />
+  <label>Plan</label>
+  <input type="text" class="form-control" [(ngModel)]="lugar.plan" />
+
+  <h3>Datos de dirección</h3>
+  <label>Calle y número</label>
+  <input type="text" class="form-control" [(ngModel)]="lugar.calle" />
+  <label>Ciudad</label>
+  <input type="text" class="form-control" [(ngModel)]="lugar.ciudad" />
+  <label>País</label>
+  <input type="text" class="form-control" [(ngModel)]="lugar.pais" />
+  <hr />
+  <a class="btn btn-primary" (click)="guardaLugar()" >Guardar</a>
+  <a class="btn btn-default" routerLink="/lugares" >Cancelar</a>
+</div>
