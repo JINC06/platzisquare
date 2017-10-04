@@ -18,6 +18,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 import {CrearComponent} from './crear/crear.component';
 import {HttpModule} from '@angular/http';
+import {LinkifystrPipe} from './pipes/linkifystr.pipe';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 const appRoutes: Routes = [
   { path: '', component: LugaresComponent },
   { path: 'lugares', component: LugaresComponent },
@@ -33,7 +35,8 @@ const appRoutes: Routes = [
     DetalleComponent,
     LugaresComponent,
     ContactoComponent,
-    CrearComponent
+    CrearComponent,
+    LinkifystrPipe
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,8 @@ const appRoutes: Routes = [
     AngularFireModule.initializeApp(environment.firebase, 'platzisquare'), // imports firebase/app needed for everything
     AngularFireDatabaseModule, // imports firebase/database, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
-    HttpModule
+    HttpModule,
+    BrowserAnimationsModule
   ],
   providers: [
     LugaresService
