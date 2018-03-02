@@ -2,8 +2,8 @@
   <agm-marker *ngFor="let lugar of lugares" [latitude]="lugar.lat" [longitude]="lugar.lng"></agm-marker>
 </agm-map>
 <hr/>
-<div id="cuadrado" [@contenedorAnimable]="state" (@contenedorAnimable.start)="animacionInicia($event)" (@contenedorAnimable.done)="animacionTermina($event)" ></div>
-<a class="btn btn-default" (click)="animar()" >Animar</a>
+<!--div id="cuadrado" [@contenedorAnimable]="state" (@contenedorAnimable.start)="animacionInicia($event)" (@contenedorAnimable.done)="animacionTermina($event)" ></div>
+<a class="btn btn-default" (click)="animar()" >Animar</a-->
 <div class="container" >
   <div class="row">
     <div class="col-md-8" >
@@ -13,7 +13,10 @@
         <ng-container *ngFor="let lugar of lugares" >
           <!--a routerLink="/detalle/{{lugar.id}}" [queryParams]="{action: 'view', referer: 'google'}" ><li class="list-group-item" *ngIf="lugar.activo"   >{{lugar.nombre}}</li></a-->
             <li class="list-group-item" *ngIf="lugar.activo" >
-              <a routerLink="/crear/{{lugar.id}}" ><h4>{{lugar.nombre | uppercase}}</h4></a>
+              <a routerLink="/crear/{{lugar.id}}" >
+                <h4 style="display: inline;" >{{lugar.nombre | uppercase}}</h4>
+              </a>
+              <span class="glyphicon glyphicon-star" *ngIf="lugar.plan == 'pagado'"></span>
               <br/>
               <small>Creado: {{lugar.id | date:'medium' | uppercase}}</small>
               <p [innerHtml]="lugar.descripcion | linkifystr"></p>
@@ -28,8 +31,15 @@
         <br/> {{messageError}}
       </div>
     </div>
-    <div class="col-md-4" >
+    <div class="col-md-4" [@contenedorAnimable]="state" (@contenedorAnimable.start)="animacionInicia($event)" (@contenedorAnimable.done)="animacionTermina($event)" >
       <h2>Destacados</h2>
+      <ng-container *ngFor="let lugar of lugares" >
+        <!--a routerLink="/detalle/{{lugar.id}}" [queryParams]="{action: 'view', referer: 'google'}" ><li class="list-group-item" *ngIf="lugar.activo"   >{{lugar.nombre}}</li></a-->
+        <div class="bg-warning padding" *ngIf="lugar.activo && lugar.plan == 'pagado'" >
+          <a routerLink="/crear/{{lugar.id}}" ><h4>{{lugar.nombre | uppercase}}</h4></a>
+          <p [innerHtml]="lugar.descripcion | linkifystr"></p>
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>

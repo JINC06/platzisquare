@@ -8,23 +8,19 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
   animations: [
     trigger('contenedorAnimable', [
       state('inicial', style({
-        opacity: 0,
-        backgroundColor: 'green',
-        transform: 'rotate3d(0,0,0,0deg)'
+        opacity: 0
       })),
       state('final', style({
-        opacity: 1,
-        backgroundColor: 'yellow',
-        transform: 'rotate3d(5,10,20,30deg)'
+        opacity: 1
       })),
-      transition('inicial => final', animate(1000)),
-      transition('final => inicial', animate(500))
+      transition('inicial => final', animate(2000)),
+      transition('final => inicial', animate(1000))
     ])
   ]
 })
 export class LugaresComponent {
   title = 'PlatziSquare';
-  state = 'final';
+  state = 'inicial';
   lat = 27.1551009;
   lng = -110.2176123;
   lugares = null;
@@ -48,6 +44,7 @@ export class LugaresComponent {
         this.lugares = lugares; // this.lugares = lugares.json();
         const me = this;
         me.lugares = Object.keys(me.lugares).map(function (key) { return me.lugares[key]; });
+        this.state = 'final';
       }, error => {
         console.log(error);
         // alert('Tenemos algo de dificultades, disculpe las molestias. Error:' + error.statusText );
